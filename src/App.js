@@ -18,7 +18,7 @@ const App = () => {
     setData()
   ,[]);
 
-  const data = async ( q) => {
+  const data = async q => {
     const apiRes = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${q}&units=metric&APPID=64f21afbae5ca7238ea1e965a8ae332f`
     );
