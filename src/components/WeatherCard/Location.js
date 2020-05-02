@@ -1,26 +1,24 @@
-import React from 'react'
-import  styled  from '@emotion/styled'
+import React from 'react';
 
-
-const Location  = ({city,country}) => {
-
-
-
-    const Container = styled.div`text-align:center`
-
-
-    const City=styled.h1`
-        text-size:1.6rem;
-        `
-    const Country = styled.h3`
-        text-size:1.4rem;
-        `
+const Location  = ( { city, country } ) => {
+    const styles = {
+        container : {
+            textAlign : "center"
+        },
+        city : {
+            textSize : "1.6rem",
+            textTransform : "capitalize"
+        },
+        country : {
+            textSize : "1.4rem"
+        }
+    }
+    
     return ( 
-        
-       <Container>
-           <City>{city}</City>
-            <Country>{country}</Country>
-        </Container>
+       <div style={styles.container}>
+            <div style={styles.city}>{city}</div>
+            <div style={styles.country}>{country}</div>
+        </div>
      );
 }
  

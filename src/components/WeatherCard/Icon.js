@@ -2,12 +2,10 @@ import React from 'react'
 import  styled  from '@emotion/styled'
 
 
-const Icon = (props) => {
+const Icon = ({ condition }) => {
+  var icon = "";
 
-    const Icon = styled.img `
-    width:40%;`
-    var icon = "";
-  switch (props.condition) {
+  switch (condition) {
     case "Clouds":
       icon = `./img/Mostly Cloudy-2x.png`;
       break;
@@ -48,9 +46,10 @@ const Icon = (props) => {
       icon = `./img/Fog-2x.png`;
       break;
   }
-    return (        
-          <Icon className='icon' src={icon} alt="Weather Icon"/>
-    );
+
+  return (        
+    <img className='icon' src={icon} alt="Weather Icon"/>
+  );
 }
  
 export default Icon;

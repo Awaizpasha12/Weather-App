@@ -1,24 +1,22 @@
-import React from 'react'
-import  styled  from '@emotion/styled'
+import React from 'react';
 
+const Condition = ({ condition , temp} ) => {
 
+    const styles = {
+        temp : {
+            fontSize : "2rem",
+        },
+        condition : {
+            fontSize : "1.2rem"
+        }
+    }
 
-const Condition = ({condition , temp}) => {
-  
-const Temp = styled.h1`
-font-size:2rem;`;
-
-
-const State =styled.h3`
-font-size:1.2rem;`;
-
-    return ( 
-        <>
-        <Temp>{temp}°C</Temp>
-        <State>{condition}</State>
-        </>
-
+    return (
+        <div>
+            <div style={styles.temp}>{temp}°C</div>
+            <div style={styles.condition}>{condition}</div>
+        </div>
      );
 }
  
-export default Condition ;
+export default Condition;

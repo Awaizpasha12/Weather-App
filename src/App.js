@@ -1,18 +1,24 @@
-import React ,{useState}from 'react';
+import React , { useState, useEffect } from 'react';
 
 import './App.css';
-import WeatherCard from './components/WeatherCard/components';
+import WeatherCard from './components/WeatherCard/WeatherCard';
 
-function App() {
+const App = () => {
+
   const[query,setQuery] = useState("Sydney");
 
-  const[city,setCity] = useState("");
-  const[temp,setTemp] = useState("");
-  const[condition,setCondition] = useState("");
-  const[country,setCountry] = useState("");
+  const [weatherInfo, setWeatherInfo] = useState({
+    temp : "",
+    condition : "",
+    country : "",
+    city : ""
+  });
+
+  useEffect(() => {
+    setData();
+  },[]);
 
   const data = async ( q) => {
-    console.log(city)
     const apiRes = await fetch(
       `http://api.openweathermap.org/data/2.5/weather?q=${q}&units=metric&APPID=64f21afbae5ca7238ea1e965a8ae332f`
     );
@@ -20,32 +26,37 @@ function App() {
     return resJSON;
   }
   
-  //var data;
-  
- // fetch(`http://api.openweathermap.org/data/2.5/weather?q=L&units=metric&APPID=64f21afbae5ca7238ea1e965a8ae332f`).then(response => response.json()).then(data => console.log(data)) 
-  
-  const handleSearch = e => {
+  const handleSearch = async e => {
     e.preventDefault();
-    
-    data(query).then(res =>{
-      setTemp(res.main.temp);
-      setCondition(res.weather[0].main);
-      setCountry(res.sys.country);
-      setCity(res.name);
-
-
-
-    });
+    setData();
   }
+
+  const setData = async () => {
+    const res = await data(query);
+    const info = {
+      temp : res.main.temp,
+      condition : res.weather[0].main,
+      country : res.sys.country,
+      city : query
+    }
+
+    setWeatherInfo(info);
+  }
+
+  const onChange = e => setQuery(e.target.value);
+
+  const { temp, condition, country, city } = weatherInfo;
+
   return (
     <div className="App">
-      <WeatherCard  temp={temp} condition={condition}city={city} country = {country}/>  <br></br>
+      <WeatherCard temp={temp} condition={condition}city={city} country = {country} /> 
+      <br />
+      <br />
       <form>
-        <input value={query} onChange={(e)=> setQuery(e.target.value)}/>
-        
-        <button onClick = { e=>handleSearch(e)} >Search </button>
+        <input name="" value={query} onChange={onChange} />
+        <button onClick={handleSearch}>Search</button>
       </form>
-      </div>
+    </div>
   );
 }
 
