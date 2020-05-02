@@ -14,9 +14,9 @@ const App = () => {
 
   //Sets data for inititial state
   //Second param i.e empty array states that first param i.e callback fn must be called every time this component is loaded
-  useEffect(() => {
-    setData();
-  },[]);
+  useEffect(() =>
+    setData()
+  ,[]);
 
   const data = async ( q) => {
     const apiRes = await fetch(
