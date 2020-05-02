@@ -1,11 +1,9 @@
 import React , { useState, useEffect } from 'react';
-
-import './App.css';
 import WeatherCard from './components/WeatherCard';
 
 const App = () => {
 
-  const[query,setQuery] = useState("Sydney");
+  const[query, setQuery] = useState("Sydney");
 
   const [weatherInfo, setWeatherInfo] = useState({
     temp : "",
@@ -26,7 +24,7 @@ const App = () => {
     return resJSON;
   }
   
-  const handleSearch = async e => {
+  const handleSearch = e => {
     e.preventDefault();
     setData();
   }
@@ -51,7 +49,7 @@ const App = () => {
       <br />
       <br />
       <form>
-        <input name="" value={query} onChange={onChange} />
+        <input value={query} onChange={onChange} />
         <button onClick={handleSearch}>Search</button>
       </form>
     </div>
