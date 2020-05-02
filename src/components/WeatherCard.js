@@ -3,7 +3,7 @@ import Location from './Location'
 import Icon from './Icon'
 import Condition from './Condition'
 
-const WeatherCard = ({condition , temp , city , country}) => {
+const WeatherCard = ({weatherInfo: {condition , temp , city , country}}) => {
   let highColor = 0;
   let lowColor = 0;
   let bg = null;

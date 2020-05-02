@@ -1,7 +1,7 @@
 import React , { useState, useEffect } from 'react';
 
 import './App.css';
-import WeatherCard from './components/WeatherCard/WeatherCard';
+import WeatherCard from './components/WeatherCard';
 
 const App = () => {
 
@@ -45,11 +45,9 @@ const App = () => {
 
   const onChange = e => setQuery(e.target.value);
 
-  const { temp, condition, country, city } = weatherInfo;
-
   return (
     <div className="App">
-      <WeatherCard temp={temp} condition={condition}city={city} country = {country} /> 
+      <WeatherCard weatherInfo={weatherInfo} /> 
       <br />
       <br />
       <form>
